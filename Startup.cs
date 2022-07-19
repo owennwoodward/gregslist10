@@ -1,4 +1,4 @@
- using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -38,10 +38,12 @@ namespace gregslist10
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "gregslist10", Version = "v1" });
             });
-            services.AddScoped<IDbConnection>(x => CreateDbConnection());
-            
-            services.AddScoped<AccountsRepository>();
-            services.AddScoped<AccountService>();
+            // services.AddScoped<IDbConnection>(x => CreateDbConnection());
+
+            // services.AddScoped<AccountsRepository>();
+            // services.AddScoped<AccountService>();
+
+            services.AddTransient<CarsService>();
         }
 
         private void ConfigureCors(IServiceCollection services)
@@ -94,10 +96,10 @@ namespace gregslist10
             }
 
             app.UseHttpsRedirection();
-            
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            
+
             app.UseRouting();
 
             app.UseAuthentication();
